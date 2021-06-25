@@ -45,13 +45,15 @@ spec:
         command:
         - ./machine-controller
         - --control-kubeconfig=inClusterConfig
+        - --concurrent-syncs=100
         - --machine-creation-timeout=20m
         - --machine-drain-timeout=2h
         - --machine-health-timeout=10m
+        - --machine-pv-reattach-timeout=3m
         - --namespace={{ .Release.Namespace }}
         - --port={{ .Values.metricsPortAzure }}
         - --target-kubeconfig=/var/lib/machine-controller-manager/kubeconfig
-        - --v=3
+        - --v=4
         livenessProbe:
           failureThreshold: 3
           httpGet:
